@@ -1,5 +1,5 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import Exit, { Dash, Report, Settings, Tasks } from "./ui/Icons";
+import Exit, { Dash, Project, Report, Settings, Tasks, User } from "./ui/Icons";
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -36,6 +36,14 @@ const Layout = () => {
                 <p>Tarefas</p>
               </li>
             </Link>
+            <Link to="/dashboard/projects">
+              <li className="flex items-center">
+                <div className="mr-4">
+                  <Project />
+                </div>
+                Meus Projetos
+              </li>
+            </Link>
             <Link to="/dashboard/settings">
               <li className=" flex items-center">
                 <div className="mr-4">
@@ -50,6 +58,15 @@ const Layout = () => {
                   <Report />
                 </div>
                 Relatórios
+              </li>
+            </Link>
+
+            <Link to="/dashboard/myaccount">
+              <li className="flex items-center">
+                <div className="mr-4">
+                  <User />
+                </div>
+                Minha Conta
               </li>
             </Link>
           </nav>

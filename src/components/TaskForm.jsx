@@ -5,8 +5,7 @@ const TaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     await createTask({ title, description });
     // Limpar os campos após o envio
     setTitle("");

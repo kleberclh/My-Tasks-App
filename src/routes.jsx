@@ -8,11 +8,14 @@ import {
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import TasksPage from "./pages/TasksPage";
+
 import Dashboard from "./components/Dashboard";
 import SettingsPage from "./pages/SettingsPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./components/Layout";
 import ReportPage from "./pages/ReportPage";
+import UserPage from "./pages/UserPage";
+import ProjectPage from "./pages/ProjectPage";
 
 const AppRoutes = () => {
   const isLoggedIn = () => {
@@ -57,10 +60,21 @@ const AppRoutes = () => {
               isLoggedIn() ? <ReportPage /> : <Navigate to="/login" replace />
             }
           />
+          <Route
+            path="/dashboard/myaccount"
+            element={
+              isLoggedIn() ? <UserPage /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route
+            path="/dashboard/projects"
+            element={
+              isLoggedIn() ? <ProjectPage /> : <Navigate to="/login" replace />
+            }
+          />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );

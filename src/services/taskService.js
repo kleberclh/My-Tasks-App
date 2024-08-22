@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://cartas-app-1.onrender.com";
+const API_URL = "http://localhost:5000";
 
 const getUserId = () => {
   const userId = localStorage.getItem("userId");
@@ -51,18 +51,18 @@ export const createTask = async (data) => {
 };
 
 export const getTasks = async () => {
-  const userId = getUserId();
-  if (!userId) {
-    console.error("User ID is missing");
-    return;
-  }
-
   try {
-    const response = await axios.get(
+    const userResponse = await axios.get(
+      `${API_URL}/me`,
+      getAuthConfig()
+    );
+    const userId = userResponse.data.id;
+
+    const tasksResponse = await axios.get(
       `${API_URL}/users/${userId}/tasks`,
       getAuthConfig()
     );
-    return response.data;
+    return tasksResponse.data;
   } catch (error) {
     console.error(
       "Error fetching tasks:",
