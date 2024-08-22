@@ -12,6 +12,7 @@ import Dashboard from "./components/Dashboard";
 import SettingsPage from "./pages/SettingsPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./components/Layout";
+import ReportPage from "./pages/ReportPage";
 
 const AppRoutes = () => {
   const isLoggedIn = () => {
@@ -39,9 +40,21 @@ const AppRoutes = () => {
             }
           />
           <Route
+            path="/dashboard/informations"
+            element={
+              isLoggedIn() ? <Dashboard /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route
             path="/dashboard/settings"
             element={
               isLoggedIn() ? <SettingsPage /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route
+            path="/dashboard/report"
+            element={
+              isLoggedIn() ? <ReportPage /> : <Navigate to="/login" replace />
             }
           />
         </Route>
