@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000";
+// const API_URL = "http://localhost:5000";
+const API_URL = "https://cartas-app-1.onrender.com";
 
 export const getUserDetails = async () => {
   try {
