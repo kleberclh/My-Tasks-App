@@ -17,6 +17,7 @@ import ReportPage from "./pages/ReportPage";
 import UserPage from "./pages/UserPage";
 import ProjectPage from "./pages/ProjectPage";
 
+
 const AppRoutes = () => {
   const isLoggedIn = () => {
     return (
@@ -72,6 +73,7 @@ const AppRoutes = () => {
               isLoggedIn() ? <ProjectPage /> : <Navigate to="/login" replace />
             }
           />
+
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

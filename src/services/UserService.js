@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:5000";
-const API_URL = "https://cartas-app-1.onrender.com";
+const API_URL = "http://localhost:5000";
 
 export const getUserDetails = async () => {
   try {
@@ -12,6 +11,7 @@ export const getUserDetails = async () => {
       "Error fetching user details:",
       error.response?.data || error.message
     );
+
     throw error;
   }
 };
@@ -24,19 +24,30 @@ export const updatePassword = async (currentPassword, newPassword) => {
     }
 
     const authConfig = getAuthConfig();
-    await axios.put(
+    const response = await axios.put(
       `${API_URL}/users/${userId}`,
       { password: currentPassword, newPassword },
       authConfig
     );
-    return "Senha atualizada com sucesso!";
+
+    console.log("Response:", response.data);
+    if (response.status === 200) {
+      return "Senha atualizada com sucesso!";
+    } else {
+      throw new Error(`Erro ao atualizar a senha: ${response.data.message}`);
+    }
   } catch (error) {
-    const errorMessage =
-      error.response?.data?.message || error.response?.data || error.message;
-    console.error("Error updating password:", errorMessage);
-    throw new Error(`Erro ao atualizar a senha: ${errorMessage}`);
+    console.error("Error updating password:", error);
+    let errorMessage;
+    if (error.response) {
+      errorMessage = `Erro ${error.response.status}: ${error.response.data.message}`;
+    } else {
+      errorMessage = error.message;
+    }
+    throw new Error(errorMessage);
   }
 };
+
 const getAuthConfig = () => {
   const token = localStorage.getItem("token");
   return {
