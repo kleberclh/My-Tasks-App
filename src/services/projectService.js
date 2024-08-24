@@ -35,7 +35,6 @@ export const createProject = async (data) => {
         ...getAuthConfig().headers,
       },
     });
-    console.log("Server response:", response.data);
     return response.data;
   } catch (error) {
     console.error(
@@ -47,26 +46,47 @@ export const createProject = async (data) => {
 };
 
 export const getProjects = async () => {
-    try {
-      // Faz uma requisição para /me, mas não usa o resultado aqui.
-      await axios.get(`${API_URL}/me`, getAuthConfig());
-  
-      // Faz a requisição para /projects e retorna os dados
-      const projectResponse = await axios.get(`${API_URL}/projects`, getAuthConfig());
-  
-      
-      // Verifica se projectResponse.data é um array
-      if (Array.isArray(projectResponse.data)) {
-        return projectResponse.data;
-      } else {
-        
-        return []; // Retorna um array vazio se a resposta não estiver no formato esperado
-      }
-    } catch (error) {
-      console.error(
-        "Erro ao buscar projetos:",
-        error.response?.data || error.message
-      );
-      throw error;
+  try {
+    await axios.get(`${API_URL}/me`, getAuthConfig());
+
+    const projectResponse = await axios.get(
+      `${API_URL}/projects`,
+      getAuthConfig()
+    );
+
+    if (Array.isArray(projectResponse.data)) {
+      return projectResponse.data;
+    } else {
+      return [];
     }
-  };
+  } catch (error) {
+    console.error(
+      "Erro ao buscar projetos:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+export const updateProject = async (projectId, data) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/projects/${projectId}`,
+      data,
+      getAuthConfig()
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating project:", error.message);
+    throw error;
+  }
+};
+
+export const deleteProject = async (projectId) => {
+  try {
+    await axios.delete(`${API_URL}/projects/${projectId}`, getAuthConfig());
+  } catch (error) {
+    console.error("Error deleting project:", error.message);
+    throw error;
+  }
+};

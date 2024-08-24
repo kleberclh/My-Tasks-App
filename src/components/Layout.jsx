@@ -12,7 +12,7 @@ const Layout = () => {
 
   return (
     <div className="flex">
-      <div className="bg-gray-800 text-white h-screen w-64 p-6 flex flex-col justify-between">
+      <div className="bg-gray-800 text-white fixed top-0 left-0 h-screen w-64 p-6 flex flex-col justify-between">
         <div>
           <div className="flex justify-between items-center mb-6">
             <Link to="/dashboard">
@@ -21,7 +21,7 @@ const Layout = () => {
           </div>
           <nav className="flex flex-col gap-6">
             <Link to="/dashboard/informations">
-              <li className=" flex">
+              <li className="flex">
                 <div className="mr-4">
                   <Dash />
                 </div>
@@ -29,7 +29,7 @@ const Layout = () => {
               </li>
             </Link>
             <Link to="/dashboard/tasks">
-              <li className=" flex">
+              <li className="flex">
                 <div className="mr-4">
                   <Tasks />
                 </div>
@@ -45,7 +45,7 @@ const Layout = () => {
               </li>
             </Link>
             <Link to="/dashboard/settings">
-              <li className=" flex items-center">
+              <li className="flex items-center">
                 <div className="mr-4">
                   <Settings />
                 </div>
@@ -85,7 +85,7 @@ const Layout = () => {
           </li>
         </div>
       </div>
-      <div className="flex-1 p-6">
+      <div className="flex-1 ml-64 p-6">
         <Outlet />
       </div>
     </div>
