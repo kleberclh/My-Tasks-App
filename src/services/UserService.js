@@ -48,7 +48,7 @@ export const updatePassword = async (currentPassword, newPassword) => {
   }
 };
 
-const getAuthConfig = () => {
+export const getAuthConfig = () => {
   const token = localStorage.getItem("token");
   return {
     headers: {

@@ -16,7 +16,7 @@ import Layout from "./components/Layout";
 import ReportPage from "./pages/ReportPage";
 import UserPage from "./pages/UserPage";
 import ProjectPage from "./pages/ProjectPage";
-
+import TarefasProjetoPage from "./pages/TarefasProjetoPage";
 
 const AppRoutes = () => {
   const isLoggedIn = () => {
@@ -73,7 +73,16 @@ const AppRoutes = () => {
               isLoggedIn() ? <ProjectPage /> : <Navigate to="/login" replace />
             }
           />
-
+          <Route
+            path="/dashboard/projects/:id/tarefas"
+            element={
+              isLoggedIn() ? (
+                <TarefasProjetoPage />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
