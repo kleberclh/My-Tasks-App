@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://cartas-app-1.onrender.com";
 
 export const getUserDetails = async () => {
   try {
@@ -26,11 +26,10 @@ export const updatePassword = async (currentPassword, newPassword) => {
     const authConfig = getAuthConfig();
     const response = await axios.put(
       `${API_URL}/users/${userId}`,
-      { password: currentPassword, newPassword },
+      { currentPassword, newPassword },
       authConfig
     );
 
-    console.log("Response:", response.data);
     if (response.status === 200) {
       return "Senha atualizada com sucesso!";
     } else {

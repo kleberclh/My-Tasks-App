@@ -88,7 +88,7 @@ const ProjectPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
         {projects.map((project) => (
           <div
-            key={project.id}
+            key={project.id} // Certifique-se de que `project.id` é único
             className="bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-100 transition-colors duration-300"
           >
             <h3 className="text-xl font-semibold text-center">

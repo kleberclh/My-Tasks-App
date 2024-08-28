@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://cartas-app-1.onrender.com";
 
 export const register = async (name, email, password) => {
   const response = await axios.post(`${API_URL}/registrar`, {

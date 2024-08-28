@@ -2,7 +2,7 @@
 import axios from "axios";
 import { getAuthConfig } from "../services/UserService"; // Ajuste o caminho conforme necessário
 
-const API_URL = "http://localhost:5000"; // Ajuste o URL da API conforme necessário
+const API_URL = "https://cartas-app-1.onrender.com"; // Ajuste o URL da API conforme necessário
 
 // Obtém as tarefas de um projeto específico
 export const getTasksByProject = async (projectId) => {

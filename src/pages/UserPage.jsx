@@ -19,15 +19,15 @@ const UserPage = () => {
     };
     fetchUserDetails();
   }, []);
-
   const handlePasswordReset = async () => {
     try {
       await updatePassword(currentPassword, newPassword);
       setCurrentPassword("");
       setNewPassword("");
       setErrorMessage("");
+      alert("Senha atualizada com sucesso!");
     } catch (error) {
-      setErrorMessage("Erro ao atualizar a senha");
+      setErrorMessage(error.message);
     }
   };
 
