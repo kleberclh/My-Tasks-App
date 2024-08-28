@@ -15,7 +15,11 @@ export default function TarefasProjetoPage() {
   const [showModal, setShowModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [currentTask, setCurrentTask] = useState(null);
-  const [taskData, setTaskData] = useState({ name: "", description: "" });
+  const [taskData, setTaskData] = useState({
+    name: "",
+    description: "",
+    status: "Pendente", // Status padrão
+  });
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -41,7 +45,10 @@ export default function TarefasProjetoPage() {
 
   const handleUpdateTask = async () => {
     try {
-      const updatedTask = await updateTask(id, currentTask.id, taskData);
+      const updatedTask = await updateTask(id, currentTask.id, {
+        ...taskData,
+        status: taskData.status,
+      }); // Inclui o status
       setTasks(
         tasks.map((task) => (task.id === currentTask.id ? updatedTask : task))
       );
@@ -60,8 +67,21 @@ export default function TarefasProjetoPage() {
     }
   };
 
+  const handleStatusChange = async (taskId, newStatus) => {
+    try {
+      const taskToUpdate = tasks.find((task) => task.id === taskId);
+      const updatedTask = await updateTask(id, taskId, {
+        ...taskToUpdate,
+        status: newStatus,
+      });
+      setTasks(tasks.map((task) => (task.id === taskId ? updatedTask : task)));
+    } catch (error) {
+      console.error("Error updating task status:", error.message);
+    }
+  };
+
   const resetModal = () => {
-    setTaskData({ name: "", description: "" });
+    setTaskData({ name: "", description: "", status: "pendente" });
     setCurrentTask(null);
     setShowModal(false);
     setEditModal(false);
@@ -69,7 +89,7 @@ export default function TarefasProjetoPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Tarefas do Projeto {id } {name}</h1>
+      <h1 className="text-2xl font-bold mb-4">Tarefas do Projeto {id}</h1>
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded-md"
         onClick={() => setShowModal(true)}
@@ -81,10 +101,15 @@ export default function TarefasProjetoPage() {
         tasks={tasks}
         onEdit={(task) => {
           setCurrentTask(task);
-          setTaskData({ name: task.name, description: task.description });
+          setTaskData({
+            name: task.name,
+            description: task.description,
+            status: task.status, // Incluindo o status ao editar
+          });
           setEditModal(true);
         }}
         onDelete={handleDeleteTask}
+        onStatusChange={handleStatusChange} // Lógica de alteração de status
       />
 
       {showModal && (

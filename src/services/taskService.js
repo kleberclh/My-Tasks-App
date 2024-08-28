@@ -60,3 +60,29 @@ export const getTasks = async () => {
     throw error;
   }
 };
+
+// Atualizado para incluir o ID da tarefa
+export const updateTask = async (taskId, updatedTask) => {
+  try {
+    console.log("Updating task:", { taskId, updatedTask }); // Adicione este log
+    const response = await axios.put(
+      `${API_URL}/tasks/${taskId}`,
+      updatedTask,
+      getAuthConfig()
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating task:", error.message);
+    throw error;
+  }
+};
+
+// Novo método para deletar tarefa
+export const deleteTask = async (taskId) => {
+  try {
+    await axios.delete(`${API_URL}/tasks/${taskId}`, getAuthConfig());
+  } catch (error) {
+    console.error("Error deleting task:", error.message);
+    throw error;
+  }
+};

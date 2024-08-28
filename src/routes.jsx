@@ -11,12 +11,12 @@ import TasksPage from "./pages/TasksPage";
 
 import Dashboard from "./components/Dashboard";
 import SettingsPage from "./pages/SettingsPage";
-import HomePage from "./pages/HomePage";
 import Layout from "./components/Layout";
 import ReportPage from "./pages/ReportPage";
 import UserPage from "./pages/UserPage";
 import ProjectPage from "./pages/ProjectPage";
 import TarefasProjetoPage from "./pages/TarefasProjetoPage";
+import LoginForm from "./components/LoginForm";
 
 const AppRoutes = () => {
   const isLoggedIn = () => {
@@ -29,7 +29,7 @@ const AppRoutes = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LoginForm />} />
         <Route element={<Layout />}>
           <Route
             path="/dashboard"
