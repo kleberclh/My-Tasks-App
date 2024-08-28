@@ -13,10 +13,17 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const userId = await login(email, password);
-      localStorage.setItem("userId", userId);
-      navigate("/dashboard");
+      if (userId) {
+        localStorage.setItem("userId", userId);
+        // Adicione um atraso para diagnóstico
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 100);
+      } else {
+        console.error("Login falhou");
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao realizar login:", error);
     }
   };
 
