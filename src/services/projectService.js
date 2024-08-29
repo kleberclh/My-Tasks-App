@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://cartas-app-1.onrender.com";
+const API_URL = "https://www.api.waxystore.shop";
 
 const getUserId = () => {
   const userId = localStorage.getItem("userId");

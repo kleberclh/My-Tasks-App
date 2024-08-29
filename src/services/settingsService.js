@@ -1,7 +1,7 @@
 // src/services/settingsService.js
 import axios from "axios";
 
-const API_URL = "https://cartas-app-1.onrender.com"; // Ajuste o URL da API conforme necessário
+const API_URL = "https://www.api.waxystore.shop"; // Ajuste o URL da API conforme necessário
 
 const getAuthConfig = () => {
   const token = localStorage.getItem("token");
