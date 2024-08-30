@@ -5,7 +5,8 @@ const TaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     await createTask({ title, description });
     // Limpar os campos após o envio
     setTitle("");
@@ -15,7 +16,7 @@ const TaskForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-6 bg-white rounded-lg shadow-md space-y-4 w-1/3"
+      className="p-6 bg-white rounded-lg shadow-md space-y-4 w-full md:w-2/3 lg:w-1/2 xl:w-1/3"
     >
       <div>
         <label htmlFor="title" className="block text-gray-700 font-medium mb-2">
@@ -47,7 +48,7 @@ const TaskForm = () => {
       </div>
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg"
+        className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg w-full"
       >
         Create Task
       </button>

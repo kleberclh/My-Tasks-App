@@ -1,8 +1,10 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Exit, { Dash, Project, Report, Settings, Tasks, User } from "./ui/Icons";
 
 const Layout = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("userId");
@@ -10,14 +12,26 @@ const Layout = () => {
     navigate("/");
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div className="flex">
-      <div className="bg-gray-800 text-white fixed top-0 left-0 h-screen w-64 p-6 flex flex-col justify-between">
+    <div className="flex h-screen">
+      {/* Menu lateral */}
+      <div
+        className={`bg-gray-800 text-white fixed top-0 left-0 h-full w-64 p-6 flex flex-col justify-between transform ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
+      >
         <div>
           <div className="flex justify-between items-center mb-6">
             <Link to="/dashboard">
               <h2 className="text-xl font-bold">My Dashboard</h2>
             </Link>
+            <button className="md:hidden text-white" onClick={toggleMenu}>
+              ✕
+            </button>
           </div>
           <nav className="flex flex-col gap-6">
             <Link to="/dashboard/informations">
@@ -85,7 +99,17 @@ const Layout = () => {
           </li>
         </div>
       </div>
-      <div className="flex-1 ml-64 p-6">
+
+      {/* Botão para abrir o menu em mobile */}
+      <button
+        className="md:hidden text-black fixed top-6 left-6 z-50"
+        onClick={toggleMenu}
+      >
+        ☰
+      </button>
+
+      {/* Conteúdo principal */}
+      <div className="flex-1 ml-0 md:ml-64 p-6">
         <Outlet />
       </div>
     </div>

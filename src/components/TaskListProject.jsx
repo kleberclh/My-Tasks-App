@@ -6,27 +6,27 @@ export default function TaskListProject({
   onStatusChange,
 }) {
   return (
-    <div className="mt-4">
+    <div className="mt-4 space-y-2">
       {tasks.map((task) => (
         <div
           key={task.id}
-          className="flex justify-between items-center bg-gray-100 p-4 mb-2 rounded-md"
+          className="flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-100 p-4 rounded-md shadow-sm"
         >
-          <div>
+          <div className="mb-4 md:mb-0">
             <h3 className="text-lg font-semibold">{task.name}</h3>
-            <p className="text-sm">{task.description}</p>
-            <p>Status: {task.status}</p>
+            <p className="text-sm text-gray-600">{task.description}</p>
+            <p className="text-gray-800">Status: {task.status}</p>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0">
             <select
               value={task.status}
               onChange={(e) => {
                 console.log(
                   `Select changed for task ${task.id}: ${e.target.value}`
-                ); // Adicione este log
+                );
                 onStatusChange(task.id, e.target.value);
               }}
-              className="px-2 py-1 border rounded-md"
+              className="px-2 py-1 border rounded-md focus:outline-none focus:ring focus:ring-blue-500"
             >
               <option value="Pendente">Pendente</option>
               <option value="Em Andamento">Em Andamento</option>
@@ -34,13 +34,13 @@ export default function TaskListProject({
               <option value="Finalizada">Finalizada</option>
             </select>
             <button
-              className="bg-yellow-500 text-white px-2 py-1 rounded-md"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded-md transition-colors duration-300"
               onClick={() => onEdit(task)}
             >
               Editar
             </button>
             <button
-              className="bg-red-500 text-white px-2 py-1 rounded-md"
+              className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md transition-colors duration-300"
               onClick={() => onDelete(task.id)}
             >
               Excluir
