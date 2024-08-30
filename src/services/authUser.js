@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "https://www.api.waxystore.shop";
+const API_URL = "http://localhost:5000";
 
 export const fetchUserName = async () => {
   try {

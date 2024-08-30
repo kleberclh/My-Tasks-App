@@ -35,35 +35,33 @@ export default function TaskList() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md mt-10">
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-4">Tasks</h2>
-        <div className="flex flex-col gap-4">
-          {tasks.map((task) => (
-            <div
-              key={task.id}
-              className="bg-gray-100 p-4 rounded-lg shadow-sm hover:bg-gray-200 transition-colors duration-300 justify-center align-center"
-            >
-              <h3 className="text-xl font-semibold">{task.title}</h3>
-              <p className="text-gray-600">{task.description}</p>
-              <p>Status: {task.status}</p>
-              <div className="mt-4 flex gap-2 justify-end">
-                <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md"
-                  onClick={() => handleEditClick(task)}
-                >
-                  Editar
-                </button>
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded-md"
-                  onClick={() => handleDeleteClick(task.id)}
-                >
-                  Excluir
-                </button>
-              </div>
+    <div className="bg-white rounded-lg shadow-md mt-10 p-6">
+      <h2 className="text-2xl font-bold mb-4">Tasks</h2>
+      <div className="flex flex-col gap-4">
+        {tasks.map((task) => (
+          <div
+            key={task.id}
+            className="bg-gray-100 p-4 rounded-lg shadow-sm hover:bg-gray-200 transition-colors duration-300"
+          >
+            <h3 className="text-xl font-semibold">{task.title}</h3>
+            <p className="text-gray-600">{task.description}</p>
+            <p className="text-gray-800 mt-2">Status: {task.status}</p>
+            <div className="mt-4 flex gap-2 justify-end">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                onClick={() => handleEditClick(task)}
+              >
+                Editar
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-md"
+                onClick={() => handleDeleteClick(task.id)}
+              >
+                Excluir
+              </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
       {showEditModal && currentTask && (
         <TaskModal
