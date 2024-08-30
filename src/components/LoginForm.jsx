@@ -15,6 +15,7 @@ const LoginForm = () => {
       const userId = await login(email, password);
       if (userId) {
         localStorage.setItem("userId", userId);
+        localStorage.setItem("token", userId);
         // Adicione um atraso para diagnóstico
         setTimeout(() => {
           navigate("/dashboard");
