@@ -15,7 +15,7 @@ const LoginForm = () => {
       const userId = await login(email, password);
       if (userId) {
         localStorage.setItem("userId", userId);
-        localStorage.setItem("token", userId);
+
         // Adicione um atraso para diagnóstico
         setTimeout(() => {
           navigate("/dashboard");
@@ -88,7 +88,10 @@ const LoginForm = () => {
               to="/dashboard"
               className="text-[#ffffff] hover:text-gray-500 transition-colors duration-300"
             >
-              <p>Se você realizou o login e não foi redirecionado ao Dashboard, clique aqui!</p>
+              <p>
+                Se você realizou o login e não foi redirecionado ao Dashboard,
+                clique aqui!
+              </p>
             </Link>
           </div>
         </form>
