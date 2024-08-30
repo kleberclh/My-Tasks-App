@@ -82,6 +82,14 @@ const LoginForm = () => {
               <p>Você não tem uma conta? Cadastre-se hoje!</p>
             </Link>
           </div>
+          <div className="mt-6 text-center">
+            <Link
+              to="/dashboard"
+              className="text-[#ffffff] hover:text-gray-500 transition-colors duration-300"
+            >
+              <p>Se você realizou o login e não foi redirecionado ao Dashboard, clique aqui!</p>
+            </Link>
+          </div>
         </form>
       </div>
 
