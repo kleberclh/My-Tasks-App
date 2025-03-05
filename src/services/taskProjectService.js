@@ -2,7 +2,7 @@
 import axios from "axios";
 import { getAuthConfig } from "../services/UserService"; // Ajuste o caminho conforme necessário
 
-const API_URL = "http://localhost:5100";
+const API_URL = "http://localhost:5000";
 // const API_URL = "https://www.api.waxystore.shop";
 // Obtém as tarefas de um projeto específico
 export const getTasksByProject = async (projectId) => {

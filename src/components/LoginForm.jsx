@@ -15,11 +15,9 @@ const LoginForm = () => {
       const userId = await login(email, password);
       if (userId) {
         localStorage.setItem("userId", userId);
-
-        // Adicione um atraso para diagnóstico
-        setTimeout(() => {
+        
           navigate("/dashboard");
-        }, 100);
+        
       } else {
         console.error("Login falhou");
       }
