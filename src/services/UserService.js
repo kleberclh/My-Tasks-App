@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:5000";
-const API_URL = "https://www.api.waxystore.shop";
+const API_URL = "http://localhost:5100";
+// const API_URL = "https://www.api.waxystore.shop";
 export const getUserDetails = async () => {
   try {
     const response = await axios.get(`${API_URL}/me`, getAuthConfig());
